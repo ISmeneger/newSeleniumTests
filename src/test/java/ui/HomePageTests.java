@@ -8,6 +8,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class HomePageTests {
@@ -46,4 +48,31 @@ class HomePageTests {
         assertEquals(BASE_URL + webFormUrl, currentUrl);
         assertEquals("Web form", title.getText());
     }
+
+    @Test
+    void openAllLinksTest() throws InterruptedException {
+        int qtyLinks = 0;
+        List<WebElement> chapters = driver.findElements(By.cssSelector("h5.card-title"));
+        for (WebElement chapter : chapters) {
+            List<WebElement> links = chapter.findElements(By.xpath("./../a"));
+            qtyLinks += links.size();
+            System.out.println(chapter.getText());
+            for (WebElement link : links) {
+                System.out.println(link.getText());
+                link.click();
+//                Thread.sleep(1000);
+                driver.navigate().back();
+            }
+        }
+        assertEquals(6, chapters.size());
+        assertEquals(27, qtyLinks);
+    }
+
+    @Test
+    void classTest() {
+        List<WebElement> links = driver.findElements(By.cssSelector(".btn.btn-outline-primary.mb-2"));
+        assertEquals(27, links.size());
+    }
+
+
 }
