@@ -60,7 +60,7 @@ class HomePageTests {
             for (WebElement link : links) {
                 System.out.println(link.getText());
                 link.click();
-//                Thread.sleep(1000);
+                Thread.sleep(2000);
                 driver.navigate().back();
             }
         }

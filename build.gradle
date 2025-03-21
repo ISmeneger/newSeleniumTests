@@ -14,9 +14,29 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter'
     // https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java
     testImplementation 'org.seleniumhq.selenium:selenium-java:4.26.0'
+    testImplementation 'org.assertj:assertj-core:3.25.3'
 
 }
 
 test {
     useJUnitPlatform()
+}
+
+tasks.register('smokeTest', Test) {
+    useJUnitPlatform() {
+        includeTags 'smoke', 'api'
+    }
+}
+
+tasks.register('noDefectsTest', Test) {
+    useJUnitPlatform() {
+        includeTags 'smoke'
+        excludeTags 'defect'
+    }
+}
+
+tasks.register('selenium', Test) {
+    useJUnitPlatform() {
+        includeTags 'selenium'
+    }
 }
