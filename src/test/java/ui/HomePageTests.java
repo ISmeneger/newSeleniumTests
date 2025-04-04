@@ -6,14 +6,19 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.WindowType;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.openqa.selenium.support.ui.ExpectedConditions.numberOfWindowsToBe;
 
 class HomePageTests {
     WebDriver driver;
+    WebDriverWait wait;
     private static final String BASE_URL = "https://bonigarcia.dev/selenium-webdriver-java/";
 
     @BeforeEach
@@ -21,6 +26,7 @@ class HomePageTests {
         driver = new ChromeDriver();
         driver.get(BASE_URL);
         driver.manage().window().maximize();
+        wait = new WebDriverWait(driver, Duration.ofSeconds(2));
     }
 
     @AfterEach
@@ -61,7 +67,9 @@ class HomePageTests {
                 System.out.println(link.getText());
                 link.click();
                 Thread.sleep(2000);
+//                driver.switchTo().newWindow(WindowType.WINDOW);
                 driver.navigate().back();
+
             }
         }
         assertEquals(6, chapters.size());

@@ -1,6 +1,5 @@
 package ui;
 
-import org.jspecify.annotations.Nullable;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,13 +9,11 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.Color;
 import org.openqa.selenium.support.ui.Select;
 
-import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Collection;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -25,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static steps.WebFormSteps.openWebFormPage;
 import static steps.WebFormSteps.sendInput;
 
-public class SeleniumAtionsTests {
+public class SeleniumActionsTests {
     WebDriver driver;
     private static final String BASE_URL = "https://bonigarcia.dev/selenium-webdriver-java/";
 
@@ -243,7 +240,7 @@ public class SeleniumAtionsTests {
         System.out.println("Содержимое файла: " + content);
 
         // Получаем URL ресурса
-        URL url = SeleniumAtionsTests.class.getClassLoader().getResource("text.txt");
+        URL url = SeleniumActionsTests.class.getClassLoader().getResource("text.txt");
 
         String absolutePath = null;
         if (url != null) {
